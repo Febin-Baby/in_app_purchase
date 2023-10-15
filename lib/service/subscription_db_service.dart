@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart';
+import 'package:pim/core/constants.dart';
 
 class SubscriptionDbService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -9,7 +10,12 @@ class SubscriptionDbService {
   Future<void> saveSubcriptionsDetails(PurchaseDetails purchaseDetails) async {
     GooglePlayPurchaseDetails gpp =
         purchaseDetails as GooglePlayPurchaseDetails;
-    _firestore.collection('User Data').doc('vt1g6YbzBkxblkyrXfzT').set({
+    _firestore
+        .collection('users')
+        .doc(auth.currentUser?.email)
+        .collection('user Data')
+        .doc(auth.currentUser?.uid)
+        .set({
       "Purchase Wrapper": {
         'developerPayload': gpp.billingClientPurchase.developerPayload,
         'isAcknowledged': gpp.billingClientPurchase.isAcknowledged,
@@ -29,8 +35,10 @@ class SubscriptionDbService {
 
   Stream<UserData> get featchUserDataFromDb {
     return _firestore
-        .collection('User Data')
-        .doc('vt1g6YbzBkxblkyrXfzT')
+        .collection('users')
+        .doc(auth.currentUser?.email)
+        .collection('user Data')
+        .doc(auth.currentUser?.uid)
         .snapshots()
         .map((event) => userDataFromSnapshot(event));
   }
@@ -61,7 +69,11 @@ class SubscriptionDbService {
   }
 
   Future<bool> checkUserSubscriptionStatus() async {
-    String userUid = 'vt1g6YbzBkxblkyrXfzT';
+    String userUid = FirebaseFirestore.instance
+        .collection('users')
+        .doc(auth.currentUser?.email)
+        .collection('User Data')
+        .doc(auth.currentUser?.uid) as String;
 
     // Create a reference to the Purchase Collection
     var purchaseRef = _firestore.collection("purchases");

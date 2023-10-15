@@ -75,7 +75,7 @@ class SignUpPae extends StatelessWidget {
                 txt: 'Sign Up',
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    AuthServices().signuUp();
+                    AuthServices().signuUp(context);
                   }
                 },
               ),

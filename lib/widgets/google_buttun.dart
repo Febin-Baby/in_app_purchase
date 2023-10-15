@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pim/core/color.dart';
+import 'package:pim/service/authentication.dart';
 
 class GoogleButton extends StatelessWidget {
   const GoogleButton({
@@ -21,7 +22,7 @@ class GoogleButton extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        authcontroller.googleSignIn();
+        AuthServices().googleSignIn(context);
       },
       child: const Text('Continue with Google'),
     );
