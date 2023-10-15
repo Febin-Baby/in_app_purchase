@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "262922140805",
+    "project_id": "new-project-1be77",
+    "storage_bucket": "new-project-1be77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262922140805:android:8d130d62c9510aa5f23dec",
+        "android_client_info": {
+          "package_name": "com.arApps.pim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg2CR6Jpydz0ORwXv4X2PZrZ_soUHdVoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
